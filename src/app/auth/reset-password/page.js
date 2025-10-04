@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Card from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
 function ResetPasswordContent() {
@@ -19,12 +19,14 @@ function ResetPasswordContent() {
 export default function ResetPasswordPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <Card
-        title="Redefinir Senha"
-        subtitle="Digite sua nova senha"
-        className="w-full max-w-md"
-      >
-        <ResetPasswordContent />
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Redefinir Senha</CardTitle>
+          <CardDescription>Digite sua nova senha</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ResetPasswordContent />
+        </CardContent>
       </Card>
     </div>
   );

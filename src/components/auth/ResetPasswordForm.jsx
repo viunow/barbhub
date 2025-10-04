@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Input from "@/components/ui/input";
-import Button from "@/components/ui/button";
-import Alert from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import authService from "@/services/authService";
 
 export default function ResetPasswordForm() {
@@ -67,10 +67,11 @@ export default function ResetPasswordForm() {
   if (success) {
     return (
       <div className="w-full">
-        <Alert
-          type="success"
-          message="Senha redefinida com sucesso! Redirecionando para login..."
-        />
+        <Alert>
+          <AlertDescription>
+            Senha redefinida com sucesso! Redirecionando para login...
+          </AlertDescription>
+        </Alert>
       </div>
     );
   }
@@ -78,37 +79,53 @@ export default function ResetPasswordForm() {
   if (!token && error) {
     return (
       <div className="w-full">
-        <Alert type="error" message={error} />
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <Alert type="error" message={error} onClose={() => setError("")} />
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
-      <Input
-        label="Nova Senha"
-        type="password"
-        name="newPassword"
-        value={formData.newPassword}
-        onChange={handleChange}
-        placeholder="••••••••"
-        required
-      />
+      <div>
+        <label htmlFor="newPassword" className="block text-sm font-medium mb-2">
+          Nova Senha
+        </label>
+        <Input
+          id="newPassword"
+          type="password"
+          name="newPassword"
+          value={formData.newPassword}
+          onChange={handleChange}
+          placeholder="••••••••"
+          required
+        />
+      </div>
 
-      <Input
-        label="Confirmar Nova Senha"
-        type="password"
-        name="confirmPassword"
-        value={formData.confirmPassword}
-        onChange={handleChange}
-        placeholder="••••••••"
-        required
-      />
+      <div>
+        <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2">
+          Confirmar Nova Senha
+        </label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          placeholder="••••••••"
+          required
+        />
+      </div>
 
-      <Button type="submit" fullWidth loading={loading}>
-        Redefinir Senha
+      <Button type="submit" className="w-full" disabled={loading}>
+        {loading ? "Redefinindo..." : "Redefinir Senha"}
       </Button>
     </form>
   );

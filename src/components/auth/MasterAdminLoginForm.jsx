@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Input from "@/components/ui/input";
-import Button from "@/components/ui/button";
-import Alert from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import authService from "@/services/authService";
 
 export default function MasterAdminLoginForm() {
@@ -39,31 +39,45 @@ export default function MasterAdminLoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <Alert type="error" message={error} onClose={() => setError("")} />
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
-      <Input
-        label="Email"
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="admin@fswbarber.com"
-        required
-      />
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium mb-2">
+          Email
+        </label>
+        <Input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="admin@fswbarber.com"
+          required
+        />
+      </div>
 
-      <Input
-        label="Senha"
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="••••••••"
-        required
-      />
+      <div>
+        <label htmlFor="password" className="block text-sm font-medium mb-2">
+          Senha
+        </label>
+        <Input
+          id="password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="••••••••"
+          required
+        />
+      </div>
 
-      <Button type="submit" fullWidth loading={loading}>
-        Entrar como Master Admin
+      <Button type="submit" className="w-full" disabled={loading}>
+        {loading ? "Entrando..." : "Entrar como Master Admin"}
       </Button>
     </form>
   );

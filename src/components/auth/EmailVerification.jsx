@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Alert from "@/components/ui/alert";
-import Button from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import authService from "@/services/authService";
 
 export default function EmailVerification() {
@@ -13,19 +13,7 @@ export default function EmailVerification() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    const token = searchParams.get("token");
-
-    if (!token) {
-      setError("Token de verificação não encontrado");
-      setLoading(false);
-      return;
-    }
-
-    verifyEmail(token);
-  }, [searchParams]);
-
-  const verifyEmail = async (token) => {
+  const verifyEmail = useCallback(async (token) => {
     try {
       await authService.verifyEmail(token);
       setSuccess(true);
@@ -37,7 +25,19 @@ export default function EmailVerification() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    const token = searchParams.get("token");
+
+    if (!token) {
+      setError("Token de verificação não encontrado");
+      setLoading(false);
+      return;
+    }
+
+    verifyEmail(token);
+  }, [searchParams, verifyEmail]);
 
   return (
     <div className="text-center">
@@ -50,7 +50,9 @@ export default function EmailVerification() {
 
       {error && (
         <>
-          <Alert type="error" message={error} />
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
           <Button onClick={() => router.push("/auth/login")} className="mt-4">
             Voltar para Login
           </Button>
@@ -59,10 +61,11 @@ export default function EmailVerification() {
 
       {success && (
         <div>
-          <Alert
-            type="success"
-            message="Email verificado com sucesso! Redirecionando para login..."
-          />
+          <Alert>
+            <AlertDescription>
+              Email verificado com sucesso! Redirecionando para login...
+            </AlertDescription>
+          </Alert>
           <div className="mt-4">
             <svg
               className="w-16 h-16 text-green-500 mx-auto"

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Card from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import EmailVerification from "@/components/auth/EmailVerification";
 
 function EmailVerificationContent() {
@@ -19,8 +19,13 @@ function EmailVerificationContent() {
 export default function VerifyEmailPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <Card title="Verificação de Email" className="w-full max-w-md">
-        <EmailVerificationContent />
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Verificação de Email</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <EmailVerificationContent />
+        </CardContent>
       </Card>
     </div>
   );

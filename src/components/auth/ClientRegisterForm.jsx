@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Input from "@/components/ui/input";
-import Button from "@/components/ui/button";
-import Alert from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import authService from "@/services/authService";
 
 export default function ClientRegisterForm() {
@@ -66,65 +66,98 @@ export default function ClientRegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <Alert type="error" message={error} onClose={() => setError("")} />
-      <Alert type="success" message={success} onClose={() => setSuccess("")} />
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+      {success && (
+        <Alert>
+          <AlertDescription>{success}</AlertDescription>
+        </Alert>
+      )}
 
-      <Input
-        label="Nome Completo"
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="João Silva"
-        required
-      />
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium mb-2">
+          Nome Completo
+        </label>
+        <Input
+          id="name"
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="João Silva"
+          required
+        />
+      </div>
 
-      <Input
-        label="Email"
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="seu@email.com"
-        required
-      />
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium mb-2">
+          Email
+        </label>
+        <Input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="seu@email.com"
+          required
+        />
+      </div>
 
-      <Input
-        label="Telefone"
-        type="tel"
-        name="phone"
-        value={formData.phone}
-        onChange={handleChange}
-        placeholder="11999999999"
-        required
-      />
+      <div>
+        <label htmlFor="phone" className="block text-sm font-medium mb-2">
+          Telefone
+        </label>
+        <Input
+          id="phone"
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="11999999999"
+          required
+        />
+      </div>
 
-      <Input
-        label="Senha"
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="••••••••"
-        required
-      />
+      <div>
+        <label htmlFor="password" className="block text-sm font-medium mb-2">
+          Senha
+        </label>
+        <Input
+          id="password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="••••••••"
+          required
+        />
+      </div>
 
-      <Input
-        label="Confirmar Senha"
-        type="password"
-        name="confirmPassword"
-        value={formData.confirmPassword}
-        onChange={handleChange}
-        placeholder="••••••••"
-        required
-      />
+      <div>
+        <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2">
+          Confirmar Senha
+        </label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          placeholder="••••••••"
+          required
+        />
+      </div>
 
-      <Button type="submit" fullWidth loading={loading}>
-        Cadastrar
+      <Button type="submit" className="w-full" disabled={loading}>
+        {loading ? "Cadastrando..." : "Cadastrar"}
       </Button>
 
-      <div className="mt-4 text-center">
+      <div className="text-center">
         <span className="text-sm text-gray-600">Já tem uma conta? </span>
         <Link
           href="/auth/login"
