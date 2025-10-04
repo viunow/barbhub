@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "title": "Gerencie sua Barbearia de Forma",
+    "titleHighlight": "Profissional",
+    "description": "Plataforma completa para agendamentos online, gestão de clientes e barbeiros. Transforme sua barbearia com tecnologia.",
+    "buttons": {
+      "primary": {
+        "text": "Testar Gratuitamente",
+        "link": "/auth/register"
+      },
+      "secondary": {
+        "text": "Conhecer Recursos",
+        "link": "#features"
+      }
+    }
+  },
+  "features": {
+    "title": "Tudo que você precisa em um só lugar",
+    "subtitle": "Recursos desenvolvidos especialmente para barbearias que querem crescer e profissionalizar",
+    "items": [
+      {
+        "icon": "Calendar",
+        "title": "Agendamentos Online",
+        "description": "Sistema completo de agendamentos com confirmação automática e lembretes."
+      },
+      {
+        "icon": "Users",
+        "title": "Gestão de Clientes",
+        "description": "Cadastro completo de clientes com histórico de atendimentos e preferências."
+      },
+      {
+        "icon": "Scissors",
+        "title": "Controle de Barbeiros",
+        "description": "Gerencie sua equipe, horários e especialidades de cada profissional."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Relatórios e Análises",
+        "description": "Acompanhe o desempenho do seu negócio com dashboards intuitivos."
+      },
+      {
+        "icon": "Clock",
+        "title": "Horários Flexíveis",
+        "description": "Configure intervalos, bloqueios e horários personalizados para cada barbeiro."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "App Mobile",
+        "description": "Acesso completo via celular para você e seus clientes."
+      }
+    ]
+  },
+  "forWho": {
+    "title": "Para quem é essa plataforma?",
+    "barbershop": {
+      "icon": "Store",
+      "title": "Para Barbearias",
+      "subtitle": "Gerencie todo seu negócio em uma única plataforma",
+      "features": [
+        "Sistema completo de agendamentos",
+        "Controle de barbeiros e serviços",
+        "Relatórios financeiros e de desempenho",
+        "Seu próprio subdomínio personalizado",
+        "Gestão de clientes e histórico"
+      ],
+      "button": {
+        "text": "Área da Barbearia",
+        "link": "/admin/login"
+      }
+    },
+    "client": {
+      "icon": "User",
+      "title": "Para Clientes",
+      "subtitle": "Agende seus horários de forma rápida e fácil",
+      "features": [
+        "Agendamento online 24/7",
+        "Escolha seu barbeiro favorito",
+        "Receba lembretes automáticos",
+        "Histórico de cortes e serviços",
+        "Cancelamento fácil quando necessário"
+      ],
+      "button": {
+        "text": "Acessar como Cliente",
+        "link": "/auth/login"
+      }
+    }
+  },
+  "cta": {
+    "title": "Pronto para transformar sua barbearia?",
+    "description": "Comece agora gratuitamente. Não precisa cartão de crédito.",
+    "button": {
+      "text": "Criar Conta Gratuita",
+      "link": "/auth/register"
+    },
+    "disclaimer": "Teste todos os recursos por 15 dias. Sem compromisso."
+  }
+}
